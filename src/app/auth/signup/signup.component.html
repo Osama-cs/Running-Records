@@ -3,6 +3,7 @@
   <form
     fxLayout="column"
     fxLayoutAlign="center center"
+    fxLayoutGap="10px"
     #f="ngForm"
     (ngSubmit)="onSubmit(f)"
   >
@@ -36,6 +37,20 @@
       <mat-error>Has to be 6 characters</mat-error>
       <mat-hint align="end"> {{ pwInput.value?.length }} / 6</mat-hint>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="accent">Submit</button>
+    <mat-form-field appearance="outline" hintLabel="Has to be at least 4 characters long">
+      <mat-label>Your Username</mat-label>
+      <input
+        matInput
+        placeholder="BenStar"
+        ngModel
+        name="username"
+        required
+        minlength="4"
+        #unInput="ngModel"
+      />
+      <mat-error>Has to be 4 characters</mat-error>
+      <mat-hint align="end"> {{ unInput.value?.length }} / 4</mat-hint>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Submit</button>
   </form>
 </section>
