@@ -1,2 +1,19 @@
-
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <p>Hello :3</p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+        <div><button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button></div>
+        <div>LOGO</div>
+        <a [routerLink]="['/signup']">Signup</a>
+        <a [routerLink]="['/login']">Login</a>
+        <a [routerLink]="['/plant']">Plants</a>
+    </mat-toolbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
