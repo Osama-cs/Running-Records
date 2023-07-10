@@ -1,3 +1,66 @@
-<p>
-  landing-page works!
-</p>
+<div class="landing-page" fxLayout="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="20px" fxLayoutAlign="center center">
+  <section>
+    <h1>Welcome!</h1>
+    <p>
+      Have you ever wanted to have the ability to track your plants health, and
+      keep on yop of your plants?
+    </p>
+    <p>
+      Well, Plant Planner is the site for you, get started now and sign up today!
+    </p>
+    <a [routerLink]="['/login']">
+      <button mat-raised-button color="accent">Login</button>
+    </a>
+    <a [routerLink]="['/signup']">
+      <button mat-raised-button color="accent">Signup</button>
+    </a>
+  </section>
+  <br>
+  <section>
+    <h1>Features</h1>
+    <p>
+      In this application you will have the ability to write personal entires
+      that you can use to keep track of your plants.
+    </p>
+  </section>
+  <section>
+    <h1>Contact Us</h1>
+    <p>If you have an inquires, send them over and we'll get back to you ASAP!</p>
+    <form
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+      #f="ngForm"
+      (ngSubmit)="onSubmit(f)"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>Your Email</mat-label>
+        <input
+          type="email"
+          matInput
+          placeholder="ben@gmail.com"
+          ngModel
+          name="email"
+          email
+          required
+          #emailInput="ngModel"
+        />
+        <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
+        <mat-error *ngIf="!emailInput.hasError('required')" >E-mail is invalid.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Your Message</mat-label>
+        <textarea
+          matInput
+          placeholder=""
+          ngModel
+          name="message"
+          required
+          #messInput="ngModel"
+        ></textarea>
+        <mat-error *ngIf="messInput.hasError('required')">Field Must not be empty.</mat-error>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Submit</button>
+    </form>
+  </section>
+</div>

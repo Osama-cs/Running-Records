@@ -1,0 +1,11 @@
+.landing-page {
+    text-align: center;
+}
+
+a{
+    padding: 5px;
+}
+
+mat-form-field {
+    width: 300px;
+}

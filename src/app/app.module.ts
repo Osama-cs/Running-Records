@@ -20,7 +20,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       SignupComponent,
       LoginComponent,
       CurrentPlantComponent,
-      PastPlantsComponent
+      PastPlantsComponent,
    ],
   imports: [
     BrowserModule,
