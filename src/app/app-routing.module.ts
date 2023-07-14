@@ -3,8 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
-import { CurrentPlantComponent } from './dashboard/current-plant/current-plant.component';
-
+import { PlantComponent } from './dashboard/plant/plant.component';
 const routes: Routes = [
   {
     path: '',
@@ -23,7 +22,7 @@ const routes: Routes = [
 
   {
     path: 'plant',
-    component: CurrentPlantComponent
+    component: PlantComponent
   }
 ];
 

@@ -9,9 +9,10 @@ import { MaterialModule } from './material.module'
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
-import { CurrentPlantComponent } from './dashboard/current-plant/current-plant.component';
+import { NewPlantComponent } from './dashboard/new-plant/new-plant.component';
 import { PastPlantsComponent } from './dashboard/past-plants/past-plants.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { PlantComponent } from './dashboard/plant/plant.component';
 
 @NgModule({
   declarations: [		
@@ -19,8 +20,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       LandingPageComponent,
       SignupComponent,
       LoginComponent,
-      CurrentPlantComponent,
+      NewPlantComponent,
       PastPlantsComponent,
+      PlantComponent
    ],
   imports: [
     BrowserModule,
