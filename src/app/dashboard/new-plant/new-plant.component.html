@@ -1,3 +1,31 @@
-<p>
-  new-plant works!
-</p>
+<section class="new-plant" fxLayout fxLayoutAlign="center">
+  <mat-card fxFlex.xs="100%" fxFlex="400px">
+    <mat-card-title fxLayoutAlign="center">
+      How are your plants doing?
+    </mat-card-title>
+    <mat-card-content>
+      <form
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+      #fp="ngForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Name of your plant?</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Rose"
+            ngModel
+            name="pName"
+            required
+            #npInput="ngModel"
+          />
+          <mat-error *ngIf="npInput.hasError('required')">Field must not be empty.</mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center">
+      <button mat-button>Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</section>
