@@ -1,13 +1,13 @@
 <section class="new-plant" fxLayout fxLayoutAlign="center">
   <mat-card fxFlex.xs="100%" fxFlex="400px">
-    <mat-card-title fxLayoutAlign="center">
+    <mat-card-title class="plantTitle" fxLayoutAlign="center">
       How are your plants doing?
     </mat-card-title>
     <mat-card-content>
       <form
       fxLayout="column"
       fxLayoutAlign="center center"
-      fxLayoutGap="10px"
+      fxLayoutGap="5px"
       #fp="ngForm">
         <mat-form-field appearance="outline">
           <mat-label>Name of your plant?</mat-label>
@@ -27,10 +27,32 @@
           <input
           matInput
           required
+          ngModel
           placeholder="Pick a date!"
           [matDatepicker]="datePicker">
           <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
           <mat-datepicker #datePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Name of your plant?</mat-label>
+          <input
+            matInput
+            placeholder="Rose"
+            ngModel
+            name="pName"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Progress Description</mat-label>
+          <textarea
+            matInput
+            placeholder="How is your plant doing?"
+            ngModel
+            name="message"
+            required
+            #descInput="ngModel"
+          ></textarea>
+          <mat-error *ngIf="descInput.hasError('required')">Field Must not be empty.</mat-error>
         </mat-form-field>
       </form>
     </mat-card-content>
@@ -39,3 +61,4 @@
     </mat-card-actions>
   </mat-card>
 </section>
+
