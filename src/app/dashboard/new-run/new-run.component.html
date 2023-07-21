@@ -1,7 +1,7 @@
-<section class="new-plant" fxLayout fxLayoutAlign="center">
+<section class="new-run" fxLayout fxLayoutAlign="center">
   <mat-card fxFlex.xs="100%" fxFlex="400px">
     <mat-card-title class="plantTitle" fxLayoutAlign="center">
-      How are your plants doing?
+      How was your run?
     </mat-card-title>
     <mat-card-content>
       <form
@@ -10,20 +10,7 @@
       fxLayoutGap="5px"
       #fp="ngForm">
         <mat-form-field appearance="outline">
-          <mat-label>Name of your plant?</mat-label>
-          <input
-            type="text"
-            matInput
-            placeholder="Rose"
-            ngModel
-            name="pName"
-            required
-            #npInput="ngModel"
-          />
-          <mat-error *ngIf="npInput.hasError('required')">Field must not be empty.</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Day your plant grew?</mat-label>
+          <mat-label>Day of your run?</mat-label>
           <input
           matInput
           required
@@ -34,13 +21,22 @@
           <mat-datepicker #datePicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Name of your plant?</mat-label>
+          <mat-label>Run Distance? (KM)</mat-label>
           <input
             matInput
             placeholder="Rose"
             ngModel
+            required
             name="pName"
           />
+        </mat-form-field>
+        <mat-form-field appearance="outline" >
+          <mat-label>How do you feel?</mat-label>
+          <mat-select required>
+            <mat-option value="good">Good</mat-option>
+            <mat-option value="ok">Alright</mat-option>
+            <mat-option value="rough">Rough</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Progress Description</mat-label>

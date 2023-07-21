@@ -9,9 +9,9 @@
         <mat-icon>login</mat-icon>
         <span class="nav-text">Login</span>
       </a>
-      <a mat-list-item [routerLink]="['/plant']" (click)="sidenav.close()">
+      <a mat-list-item [routerLink]="['/run']" (click)="sidenav.close()">
         <mat-icon>yard</mat-icon>
-        <span class="nav-text">Plants</span>
+        <span class="nav-text">Runs</span>
       </a>
       <mat-list-item>
         <button mat-icon-button (click)="sidenav.close()">
@@ -29,13 +29,13 @@
         </button>
       </div>
       <div>
-        <a [routerLink]="['/']">Plant Planner</a>
+        <a [routerLink]="['/']">Running Records</a>
       </div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
         <ul fxLayout fxLayoutGap="10px" class="nav-items">
           <li><a [routerLink]="['/signup']">Signup</a></li>
           <li><a [routerLink]="['/login']">Login</a></li>
-          <li><a [routerLink]="['/plant']">Plants</a></li>
+          <li><a [routerLink]="['/run']">Runs</a></li>
           <li><a>Logout</a></li>
         </ul>
       </div>
