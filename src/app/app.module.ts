@@ -9,10 +9,10 @@ import { MaterialModule } from './material.module'
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
-import { NewPlantComponent } from './dashboard/new-plant/new-plant.component';
-import { PastPlantsComponent } from './dashboard/past-plants/past-plants.component';
+import { NewRunComponent } from './dashboard/new-run/new-run.component';
+import { PastRunsComponent } from './dashboard/past-runs/past-runs.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { PlantComponent } from './dashboard/plant/plant.component';
+import { RunComponent } from './dashboard/runs/runs.component';
 
 @NgModule({
   declarations: [		
@@ -20,9 +20,9 @@ import { PlantComponent } from './dashboard/plant/plant.component';
       LandingPageComponent,
       SignupComponent,
       LoginComponent,
-      NewPlantComponent,
-      PastPlantsComponent,
-      PlantComponent
+      NewRunComponent,
+      PastRunsComponent,
+      RunComponent
    ],
   imports: [
     BrowserModule,
