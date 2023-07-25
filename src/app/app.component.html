@@ -1,14 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav role="navigation">
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/signup']" (click)="sidenav.close()">
-        <mat-icon>app_registration</mat-icon>
-        <span class="nav-text">Signup</span>
-      </a>
-      <a mat-list-item [routerLink]="['/login']" (click)="sidenav.close()">
-        <mat-icon>login</mat-icon>
-        <span class="nav-text">Login</span>
-      </a>
       <a mat-list-item [routerLink]="['/run']" (click)="sidenav.close()">
         <mat-icon>yard</mat-icon>
         <span class="nav-text">Runs</span>
@@ -33,8 +25,6 @@
       </div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
         <ul fxLayout fxLayoutGap="10px" class="nav-items">
-          <li><a [routerLink]="['/signup']">Signup</a></li>
-          <li><a [routerLink]="['/login']">Login</a></li>
           <li><a [routerLink]="['/run']">Runs</a></li>
           <li><a>Logout</a></li>
         </ul>
