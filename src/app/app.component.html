@@ -6,7 +6,7 @@
         <span class="nav-text">Runs</span>
       </a>
       <mat-list-item>
-        <button mat-icon-button (click)="sidenav.close()" *ngIf="isAuth">
+        <button mat-icon-button (click)="onLogoutSideNav()" (click)="sidenav.close()"  *ngIf="isAuth">
           <mat-icon>logout</mat-icon>
           <span class="nav-item">Logout</span>
         </button>
@@ -26,7 +26,7 @@
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
         <ul fxLayout fxLayoutGap="10px" class="nav-items">
           <li *ngIf="isAuth"><a [routerLink]="['/run']">Runs</a></li>
-          <li *ngIf="isAuth"><a>Logout</a></li>
+          <li *ngIf="isAuth"><a style="cursor: pointer;" (click)="onLogout()">Logout</a></li>
         </ul>
       </div>
     </mat-toolbar>
