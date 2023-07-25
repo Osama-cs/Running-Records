@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { NewRunComponent } from './dashboard/new-run/new-run.component';
 import { PastRunsComponent } from './dashboard/past-runs/past-runs.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RunComponent } from './dashboard/runs/runs.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [		
@@ -31,8 +32,9 @@ import { RunComponent } from './dashboard/runs/runs.component';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
