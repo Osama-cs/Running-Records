@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RunService } from '../run.service';
+import { Run } from '../run.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-new-run',
@@ -6,7 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-run.component.css'],
 })
 export class NewRunComponent implements OnInit {
-  constructor() {}
+  private newRun!: Run;
+  private runs: Run[] = [];
+  constructor(private runService: RunService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.addRun;
+  }
+
+  incrementId(){
+      
+  }
+
+  addRun(form: NgForm){
+    this.runService.addRuns(form.value);
+  }
 }

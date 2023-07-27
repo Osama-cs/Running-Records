@@ -14,6 +14,7 @@ import { PastRunsComponent } from './dashboard/past-runs/past-runs.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RunComponent } from './dashboard/runs/runs.component';
 import { AuthService } from './auth/auth.service';
+import { RunService } from './dashboard/run.service';
 
 @NgModule({
   declarations: [		
@@ -34,7 +35,7 @@ import { AuthService } from './auth/auth.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, RunService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

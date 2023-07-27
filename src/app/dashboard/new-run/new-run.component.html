@@ -8,6 +8,7 @@
         fxLayout="column"
         fxLayoutAlign="center center"
         fxLayoutGap="17px"
+        (ngSubmit)="addRun(fp)"
         #fp="ngForm"
       >
         <mat-form-field appearance="outline">
@@ -35,7 +36,7 @@
           <input
             type="number"
             matInput
-            placeholder="10KM"
+            placeholder="100"
             ngModel
             required
             name="distance"
@@ -57,24 +58,20 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Calories you burned?</mat-label>
+          <mat-label>Calories burned?</mat-label>
           <input
             type="number"
             matInput
             placeholder="500"
             ngModel
-            required
             name="calories"
             #cBurn="ngModel"
           />
-          <mat-error *ngIf="cBurn.hasError('required')">
-          Field must not be empty and be a number.
-          </mat-error>
         </mat-form-field>
       </form>
     </mat-card-content>
     <mat-card-actions fxLayoutAlign="center">
-      <button mat-button>Submit</button>
+      <button type="submit" [disabled]="fp.invalid" (click)="fp.reset() " mat-button>Submit</button>
     </mat-card-actions>
   </mat-card>
 </section>
