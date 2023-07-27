@@ -9,19 +9,18 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./new-run.component.css'],
 })
 export class NewRunComponent implements OnInit {
-  private newRun!: Run;
-  private runs: Run[] = [];
   constructor(private runService: RunService) {}
 
   ngOnInit() {
     this.addRun;
   }
 
-  incrementId(){
-      
-  }
-
   addRun(form: NgForm){
-    this.runService.addRuns(form.value);
+    console.log("HELLO");
+    this.runService.addRuns(form.value.date);
+    this.runService.addRuns(form.value.distance);
+    this.runService.addRuns(form.value.dropdown);
+    this.runService.addRuns(form.value.calories);
+    console.log("hi");
   }
 }

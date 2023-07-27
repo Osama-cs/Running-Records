@@ -1,11 +1,24 @@
-<section class="past-run" fxLayout fxLayoutAlign="center">
-  <mat-card fxFlex.xs="100%" fxFlex="400px">
-    <mat-card-title class="plantTitle" fxLayoutAlign="center">
-      How are your plants doing?
-    </mat-card-title>
-    <mat-card-content>
-    </mat-card-content>
-    <mat-card-actions fxLayoutAlign="center">
-    </mat-card-actions>
-  </mat-card>
-</section>
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef>Day Of Run</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.date | date }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="distance">
+    <mat-header-cell *matHeaderCellDef>Run Distance</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.distance | number }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="mood">
+    <mat-header-cell *matHeaderCellDef>Mood After Run</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.mood }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="calories">
+    <mat-header-cell *matHeaderCellDef>Calories Burned</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.calories | number }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
