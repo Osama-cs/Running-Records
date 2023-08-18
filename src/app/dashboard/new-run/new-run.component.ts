@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-new-run',
@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-run.component.css'],
 })
 export class NewRunComponent implements OnInit {
+  @Output() runStart = new EventEmitter<void>();
+
   constructor() {}
 
   ngOnInit() {}
+
+  onStartRun(){
+    this.runStart.emit();
+  }
 }

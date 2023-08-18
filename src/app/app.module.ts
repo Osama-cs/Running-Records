@@ -14,6 +14,7 @@ import { PastRunsComponent } from './dashboard/past-runs/past-runs.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RunComponent } from './dashboard/runs/runs.component';
 import { AuthService } from './auth/auth.service';
+import { CurrentRunComponent } from './dashboard/current-run/current-run.component';
 
 @NgModule({
   declarations: [		
@@ -23,7 +24,8 @@ import { AuthService } from './auth/auth.service';
       LoginComponent,
       NewRunComponent,
       PastRunsComponent,
-      RunComponent
+      RunComponent,
+      CurrentRunComponent
    ],
   imports: [
     BrowserModule,

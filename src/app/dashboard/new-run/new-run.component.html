@@ -1,80 +1,21 @@
 <section class="new-run" fxLayout fxLayoutAlign="center">
   <mat-card fxFlex.xs="100%" fxFlex="400px">
-    <mat-card-title class="plantTitle" fxLayoutAlign="center">
-      How was your run?
+    <mat-card-title class="runTitle" fxLayoutAlign="center">
+      How Long would you like to run for?
     </mat-card-title>
-    <mat-card-content>
-      <form
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        fxLayoutGap="17px"
-        #fp="ngForm"
-      >
-        <mat-form-field appearance="outline">
-          <mat-label>Day of your run?</mat-label>
-          <input
-            matInput
-            required
-            ngModel
-            placeholder="Pick a date!"
-            name="date"
-            #dPick="ngModel"
-            [matDatepicker]="datePicker"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="datePicker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #datePicker></mat-datepicker>
-          <mat-error *ngIf="dPick.hasError('required')"
-            >Field must not be empty.</mat-error
-          >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Run Distance? (KM)</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="10KM"
-            ngModel
-            required
-            name="distance"
-            #rDis="ngModel"
-          />
-          <mat-error *ngIf="rDis.hasError('required')">
-            Field must not be empty and be a number.
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>How do you feel?</mat-label>
-          <mat-select required ngModel name="dropdown" #mDrop="ngModel">
-            <mat-option value="good">Good</mat-option>
-            <mat-option value="ok">Alright</mat-option>
-            <mat-option value="rough">Rough</mat-option>
-          </mat-select>
-          <mat-error *ngIf="mDrop.hasError('required')">
-            Field must not be empty.
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Calories you burned?</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="500"
-            ngModel
-            required
-            name="calories"
-            #cBurn="ngModel"
-          />
-          <mat-error *ngIf="cBurn.hasError('required')">
-          Field must not be empty and be a number.
-          </mat-error>
-        </mat-form-field>
-      </form>
+    <mat-card-content fxLayoutAlign="center">
+      <mat-form-field>
+        <mat-label>Run Distance</mat-label>
+        <mat-select>
+          <mat-option value="5-KM"> 5 KM </mat-option>
+          <mat-option value="10-KM"> 10 KM </mat-option>
+          <mat-option value="15-KM"> 15 KM </mat-option>
+          <mat-option value="15-plus-KM"> 15+ KM </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions fxLayoutAlign="center">
-      <button mat-button>Submit</button>
+      <button mat-raised-button color="accent" (click)="onStartRun()">Start</button>
     </mat-card-actions>
   </mat-card>
 </section>

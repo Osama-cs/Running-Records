@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./runs.component.css']
 })
 export class RunComponent implements OnInit {
+  ongoingRun = false;
+
 
   constructor() { }
 
