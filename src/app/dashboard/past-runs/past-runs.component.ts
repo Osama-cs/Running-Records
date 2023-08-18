@@ -17,6 +17,8 @@ export class PastRunsComponent implements OnInit {
   ngOnInit() {
     console.log("yo");
     this.dataSource.data = this.runService.getAvailableRuns();
+    console.log("hey");
+
   }
 
 }

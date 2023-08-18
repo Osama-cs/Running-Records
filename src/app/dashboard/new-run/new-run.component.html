@@ -1,16 +1,13 @@
-<section class="new-run" fxLayout fxLayoutAlign="center">
-  <mat-card fxFlex.xs="100%" fxFlex="400px">
-    <mat-card-title class="plantTitle" fxLayoutAlign="center">
-      How was your run?
-    </mat-card-title>
-    <mat-card-content>
-      <form
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        fxLayoutGap="17px"
-        (ngSubmit)="addRun(fp)"
-        #fp="ngForm"
-      >
+<section class="new-run" fxLayout fxLayoutAlign="center center" fxLayoutGap="17px">
+  <form
+    #fp="ngForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-card fxFlex.xs="100%" fxFlex="400px">
+      <mat-card-title class="plantTitle" fxLayoutAlign="center center">
+        How was your run?
+      </mat-card-title>
+      <mat-card-content>
         <mat-form-field appearance="outline">
           <mat-label>Day of your run?</mat-label>
           <input
@@ -68,10 +65,17 @@
             #cBurn="ngModel"
           />
         </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-card-actions fxLayoutAlign="center">
-      <button type="submit" [disabled]="fp.invalid" (click)="fp.reset();" mat-button>Submit</button>
-    </mat-card-actions>
-  </mat-card>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center">
+        <button
+          type="submit"
+          mat-button
+          [disabled]="fp.invalid"
+          (click)="fp.reset()"
+        >
+          Submit
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 </section>

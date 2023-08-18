@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RunService } from '../run.service';
 import { Run } from '../run.model';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-new-run',
@@ -9,18 +9,20 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./new-run.component.css'],
 })
 export class NewRunComponent implements OnInit {
+
   constructor(private runService: RunService) {}
 
+  @ViewChild('fp') Forms!: NgForm;
+
   ngOnInit() {
-    this.addRun;
   }
 
-  addRun(form: NgForm){
+  onSubmit(){
     console.log("HELLO");
-    this.runService.addRuns(form.value.date);
-    this.runService.addRuns(form.value.distance);
-    this.runService.addRuns(form.value.dropdown);
-    this.runService.addRuns(form.value.calories);
+    this.runService.addRuns({
+      ...this.Forms.value
+    });
+    console.log(this.runService.getAvailableRuns());
     console.log("hi");
   }
 }

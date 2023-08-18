@@ -12,12 +12,21 @@ export class RunService {
     // {dayOfRun: new Date("04/30/2023"), distance: 400, mood: "Rough" }, 
   ]
 
+  // private newRuns: Run[] = [];
+
+  private newRun! : Run;
+  private runs: Run[] =[];
+
   addRuns(run: Run){
-    this.availableRuns.push({...run});
+    this.runs.push({...this.newRun});
   }
 
   getAvailableRuns(){
     return this.availableRuns.slice();
+  }
+
+  getNewRuns(){
+    return this.runs.slice();
   }
   
 constructor() { }

@@ -1,7 +1,7 @@
 <mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="date">
     <mat-header-cell *matHeaderCellDef>Day Of Run</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.date | date }}</mat-cell>
+    <mat-cell *matCellDef="let element">{{ element.dayOfRun | date }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="distance">
