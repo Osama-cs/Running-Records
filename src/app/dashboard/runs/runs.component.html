@@ -6,5 +6,5 @@
     <app-past-runs></app-past-runs>
   </mat-tab>
 </mat-tab-group>
-<app-current-run *ngIf="ongoingRun"></app-current-run>
+<app-current-run *ngIf="ongoingRun" (runExit)="ongoingRun  = false"></app-current-run>
 
