@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module'
+import { MaterialModule } from './material.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -14,17 +14,21 @@ import { PastRunsComponent } from './dashboard/past-runs/past-runs.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RunComponent } from './dashboard/runs/runs.component';
 import { AuthService } from './auth/auth.service';
+import { CurrentRunComponent } from './dashboard/current-run/current-run.component';
+import { StopRunComponent } from './dashboard/current-run/stop-run-component';
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
-      LandingPageComponent,
-      SignupComponent,
-      LoginComponent,
-      NewRunComponent,
-      PastRunsComponent,
-      RunComponent
-   ],
+    LandingPageComponent,
+    SignupComponent,
+    LoginComponent,
+    NewRunComponent,
+    PastRunsComponent,
+    RunComponent,
+    CurrentRunComponent,
+    StopRunComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,6 +39,6 @@ import { AuthService } from './auth/auth.service';
     ReactiveFormsModule,
   ],
   providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
