@@ -1,6 +1,6 @@
 <section class="current-run" fxLayout="column" fxLayoutAlign="center center">
-  <mat-progress-spinner mode="indeterminate" [value]="progress"></mat-progress-spinner>
-  <h1>{{ progress }}s</h1>
+  <mat-progress-spinner mode="indeterminate" [value]="seconds"></mat-progress-spinner>
+  <h1>{{ minutes }} m {{ seconds }}s</h1>
   <p>Have an amazing run, you can do it!</p>
-  <button mat-raised-button color="accent" (click)="onStop()">Stop</button>
+  <button mat-raised-button color="accent" (click)="onStop()">Finish</button>
 </section>

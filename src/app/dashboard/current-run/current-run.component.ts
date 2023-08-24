@@ -11,7 +11,9 @@ import { StopRunComponent } from './stop-run-component';
 export class CurrentRunComponent implements OnInit {
   @Output() runExit = new EventEmitter();
 
-  progress = 0;
+  seconds = 0;
+
+  minutes = 0;
 
   timer!: number;
 
@@ -23,7 +25,12 @@ export class CurrentRunComponent implements OnInit {
 
   startOrResumeTimer(){
     this.timer = setInterval(() => {
-      this.progress = this.progress + 1;
+      this.seconds = this.seconds + 1;
+      if (this.seconds == 60){
+        this.minutes++;
+        this.seconds = 0;
+      }
+      
     }, 1000);
   }
 
@@ -31,7 +38,8 @@ export class CurrentRunComponent implements OnInit {
     clearInterval(this.timer);
     const dialogRef = this.dialog.open(StopRunComponent, {
       data: {
-        progress: this.progress,
+        seconds: this.seconds,
+        minutes: this.minutes,
       },
     });
 
