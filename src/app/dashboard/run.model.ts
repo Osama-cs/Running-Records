@@ -1,7 +1,8 @@
 export interface Run{
     id: string;
     name: string;
-    time: string;
+    runSeconds: string;
+    runMinutes: string;
     calories: number;
     date?: Date;
 }

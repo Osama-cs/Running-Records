@@ -7,10 +7,7 @@
       <mat-form-field>
         <mat-label>Run Distance</mat-label>
         <mat-select>
-          <mat-option value="5-KM"> 5 KM </mat-option>
-          <mat-option value="10-KM"> 10 KM </mat-option>
-          <mat-option value="15-KM"> 15 KM </mat-option>
-          <mat-option value="15-plus-KM"> 15+ KM </mat-option>
+          <mat-option *ngFor="let run of runs" [value]="run.id"> {{ run.name }} </mat-option>
         </mat-select>
       </mat-form-field>
     </mat-card-content>

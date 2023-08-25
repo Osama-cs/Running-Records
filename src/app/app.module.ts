@@ -16,6 +16,7 @@ import { RunComponent } from './dashboard/runs/runs.component';
 import { AuthService } from './auth/auth.service';
 import { CurrentRunComponent } from './dashboard/current-run/current-run.component';
 import { StopRunComponent } from './dashboard/current-run/stop-run-component';
+import { RunService } from './dashboard/run.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { StopRunComponent } from './dashboard/current-run/stop-run-component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, RunService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 <mat-tab-group *ngIf="!ongoingRun">
   <mat-tab label="New Run"> 
-    <app-new-run (runStart)="ongoingRun = true"></app-new-run>
+    <app-new-run ></app-new-run>
   </mat-tab>
   <mat-tab label="Run Diary"> 
     <app-past-runs></app-past-runs>
@@ -8,3 +8,4 @@
 </mat-tab-group>
 <app-current-run *ngIf="ongoingRun" (runExit)="ongoingRun  = false"></app-current-run>
 
+<!-- (runStart)="ongoingRun = true" -->

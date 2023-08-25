@@ -1,4 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { RunService } from '../run.service';
+import { Run } from '../run.model';
 
 @Component({
   selector: 'app-new-run',
@@ -6,13 +8,17 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./new-run.component.css'],
 })
 export class NewRunComponent implements OnInit {
-  @Output() runStart = new EventEmitter<void>();
+  // @Output() runStart = new EventEmitter<void>();
 
-  constructor() {}
+  runs: Run[] = [];
 
-  ngOnInit() {}
+  constructor(private runService: RunService) {}
+
+  ngOnInit() {
+    this.runs = this.runService.getAvailableRuns();
+  }
 
   onStartRun(){
-    this.runStart.emit();
+    this.runService.startRun();
   }
 }
