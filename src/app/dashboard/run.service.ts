@@ -45,7 +45,8 @@ export class RunService {
   }
 
   startRun(selectedId: string) {
-    this.runningRun! = this.availableRuns.find(ex => ex.id === selectedId);
+    const selectedRun = this.availableRuns.find(ex => ex.id === selectedId);
+    this.runningRun = selectedRun;
     this.runChanged.next({ ...this.runningRun });
   }
 

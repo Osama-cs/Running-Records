@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { RunService } from '../run.service';
 import { Run } from '../run.model';
 
@@ -18,7 +19,7 @@ export class NewRunComponent implements OnInit {
     this.runs = this.runService.getAvailableRuns();
   }
 
-  onStartRun(){
-    this.runService.startRun();
+  onStartRun(form: NgForm){
+    this.runService.startRun(form.value.runDistance);
   }
 }
