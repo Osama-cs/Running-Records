@@ -11,43 +11,54 @@ export class RunService {
     {
       id: '5KM',
       name: '5 KM',
-      runSeconds: '25 Seconds',
-      runMinutes: '10 Minutes',
-      calories: 70,
+      runSeconds: 25,
+      runMinutes: 10,
     },
     {
       id: '10KM',
       name: '10 KM',
-      runSeconds: '45 Seconds',
-      runMinutes: '15 Minutes',
-      calories: 100,
+      runSeconds: 45,
+      runMinutes: 15,
     },
     {
       id: '15KM',
       name: '15 KM',
-      runSeconds: '32 Seconds',
-      runMinutes: '20 Minutes',
-      calories: 130,
+      runSeconds: 32,
+      runMinutes: 20,
     },
     {
       id: '15+KM',
       name: '15+ KM',
-      runSeconds: '25 Seconds',
-      runMinutes: '30 Minutes',
-      calories: 200,
+      runSeconds: 25,
+      runMinutes: 30,
     },
   ];
 
   private runningRun!: Run;
+  private runs: Run[] = [];
 
   getAvailableRuns() {
     return this.availableRuns.slice();
   }
 
   startRun(selectedId: string) {
-    const selectedRun = this.availableRuns.find(ex => ex.id === selectedId);
-    this.runningRun = selectedRun;
+    this.runningRun = this.availableRuns.find((ex) => ex.id === selectedId);
     this.runChanged.next({ ...this.runningRun });
+  }
+
+  completedRun(seconds: number, minutes: number) {
+    this.runs.push({
+      ...this.runningRun,
+      runSeconds: (this.runningRun.runSeconds = seconds),
+      runMinutes: (this.runningRun.runMinutes = minutes),
+      date: new Date(),
+    });
+    this.runningRun = null;
+    this.runChanged.next(null);
+  }
+
+  getCurrentRun() {
+    return { ...this.runningRun };
   }
 
   constructor() {}

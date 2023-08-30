@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { StopRunComponent } from './stop-run-component';
+import { RunService } from '../run.service';
 
 @Component({
   selector: 'app-current-run',
@@ -9,7 +10,6 @@ import { StopRunComponent } from './stop-run-component';
   styleUrls: ['./current-run.component.css'],
 })
 export class CurrentRunComponent implements OnInit {
-  @Output() runExit = new EventEmitter();
 
   seconds = 0;
 
@@ -17,7 +17,7 @@ export class CurrentRunComponent implements OnInit {
 
   timer!: number;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private runService: RunService) {}
 
   ngOnInit() {
     this.startOrResumeTimer();
@@ -45,7 +45,7 @@ export class CurrentRunComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this.runExit.emit();
+        this.runService.completedRun(this.seconds, this.minutes);
       } else {
         this.startOrResumeTimer();
       }
