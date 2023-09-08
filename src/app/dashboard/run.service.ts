@@ -61,5 +61,9 @@ export class RunService {
     return { ...this.runningRun };
   }
 
+  getCompletedRuns(){
+    return this.runs.slice();
+  }
+
   constructor() {}
 }
