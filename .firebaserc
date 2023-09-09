@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "running-records-14880"
+  },
+  "targets": {
+    "running-records-14880": {
+      "hosting": {
+        "plant-planner": [
+          "running-records-14880"
+        ]
+      }
+    }
+  }
+}

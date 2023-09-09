@@ -17,6 +17,12 @@ import { AuthService } from './auth/auth.service';
 import { CurrentRunComponent } from './dashboard/current-run/current-run.component';
 import { StopRunComponent } from './dashboard/current-run/stop-run-component';
 import { RunService } from './dashboard/run.service';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFunctions,getFunctions } from '@angular/fire/functions';
 
 @NgModule({
   declarations: [
@@ -38,6 +44,11 @@ import { RunService } from './dashboard/run.service';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
   ],
   providers: [AuthService, RunService],
   bootstrap: [AppComponent],
