@@ -1,21 +1,24 @@
 <section class="new-run" fxLayout fxLayoutAlign="center">
-  <mat-card fxFlex.xs="100%" fxFlex="400px">
-    <mat-card-title class="runTitle" fxLayoutAlign="center">
-      How Long would you like to run for?
-    </mat-card-title>
-    <mat-card-content fxLayoutAlign="center">
-      <mat-form-field>
-        <mat-label>Run Distance</mat-label>
-        <mat-select>
-          <mat-option value="5-KM"> 5 KM </mat-option>
-          <mat-option value="10-KM"> 10 KM </mat-option>
-          <mat-option value="15-KM"> 15 KM </mat-option>
-          <mat-option value="15-plus-KM"> 15+ KM </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions fxLayoutAlign="center">
-      <button mat-raised-button color="accent" (click)="onStartRun()">Start</button>
-    </mat-card-actions>
-  </mat-card>
+  <form (ngSubmit)="onStartRun(form)" #form="ngForm">
+    <mat-card fxFlex.xs="100%" fxFlex="400px">
+      <mat-card-title class="runTitle" fxLayoutAlign="center">
+        How Long would you like to run for?
+      </mat-card-title>
+      <mat-card-content fxLayoutAlign="center">
+        <mat-form-field>
+          <mat-label>Run Distance</mat-label>
+          <mat-select ngModel name="runDistance" required>
+            <mat-option *ngFor="let run of runs" [value]="run.id">
+              {{ run.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center">
+        <button mat-raised-button color="accent" [disabled]="form.invalid">
+          Start
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 </section>
