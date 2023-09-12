@@ -8,7 +8,7 @@
         <mat-form-field>
           <mat-label>Run Distance</mat-label>
           <mat-select ngModel name="runDistance" required>
-            <mat-option *ngFor="let run of runs" [value]="run.id">
+            <mat-option *ngFor="let run of runs | async" [value]="run.id">
               {{ run.name }}
             </mat-option>
           </mat-select>
