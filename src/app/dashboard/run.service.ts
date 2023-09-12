@@ -1,44 +1,39 @@
-import { Subject } from 'rxjs';
+import { Subject, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Run } from './run.model';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RunService {
   runChanged = new Subject<Run>();
-  private availableRuns: Run[] = [
-    {
-      id: '5KM',
-      name: '5 KM',
-      runSeconds: 25,
-      runMinutes: 10,
-    },
-    {
-      id: '10KM',
-      name: '10 KM',
-      runSeconds: 45,
-      runMinutes: 15,
-    },
-    {
-      id: '15KM',
-      name: '15 KM',
-      runSeconds: 32,
-      runMinutes: 20,
-    },
-    {
-      id: '15+KM',
-      name: '15+ KM',
-      runSeconds: 25,
-      runMinutes: 30,
-    },
-  ];
-
+  runsChanged = new Subject<Run[]>();
+  finishedRunsChanged = new Subject<Run[]>();
+  private availableRuns: Run[] = [];
   private runningRun!: Run;
-  private runs: Run[] = [];
 
-  getAvailableRuns() {
-    return this.availableRuns.slice();
+  constructor(private dB: AngularFirestore) {}
+
+  fetchAvailableRuns() {
+    this.dB
+      .collection('availableRuns')
+      .snapshotChanges()
+      .pipe(
+        map((docArray) => {
+          return docArray.map((doc) => {
+            const data: any = doc.payload.doc.data();
+            return {
+              id: doc.payload.doc.id,
+              ...data,
+            };
+          });
+        })
+      )
+      .subscribe((runs: Run[]) => {
+        this.availableRuns = runs;
+        this.runsChanged.next([...this.availableRuns]);
+      });
   }
 
   startRun(selectedId: string) {
@@ -47,7 +42,7 @@ export class RunService {
   }
 
   completedRun(seconds: number, minutes: number) {
-    this.runs.push({
+    this.addRunDataToFirestore({
       ...this.runningRun,
       runSeconds: (this.runningRun.runSeconds = seconds),
       runMinutes: (this.runningRun.runMinutes = minutes),
@@ -61,9 +56,16 @@ export class RunService {
     return { ...this.runningRun };
   }
 
-  getCompletedRuns(){
-    return this.runs.slice();
+  fetchCompletedRuns() {
+    this.dB
+      .collection('completedRuns')
+      .valueChanges()
+      .subscribe((runs: Run[]) => {
+        this.finishedRunsChanged.next(runs);
+      });
   }
 
-  constructor() {}
+  private addRunDataToFirestore(run: Run) {
+    this.dB.collection('completedRuns').add(run);
+  }
 }
