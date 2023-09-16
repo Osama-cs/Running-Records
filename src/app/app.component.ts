@@ -18,7 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
       this.isAuth = authStatus;
-    })
+    });
+    this.authService.initAuthListener();
   }
 
   onLogout(){

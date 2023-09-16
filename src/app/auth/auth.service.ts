@@ -1,16 +1,35 @@
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { RunService } from '../dashboard/run.service';
 
 @Injectable()
 export class AuthService {
   authChange = new Subject<boolean>();
-  private user!: User;
+  private isAuthenticated = false;
 
-  constructor(private router: Router, private uAuth: AngularFireAuth) {}
+  constructor(
+    private router: Router,
+    private uAuth: AngularFireAuth,
+    private runService: RunService
+  ) {}
+
+  initAuthListener() {
+    this.uAuth.authState.subscribe((user) => {
+      if (user) {
+        this.isAuthenticated = true;
+        this.authChange.next(true);
+        this.router.navigate(['/run']);
+      } else {
+        this.runService.cancelSubscription();
+        this.authChange.next(false);
+        this.router.navigate(['/']);
+        this.isAuthenticated = false;
+      }
+    });
+  }
 
   registerUser(authData: AuthData) {
     this.uAuth
@@ -35,21 +54,11 @@ export class AuthService {
   }
 
   logout() {
-    this.user == null;
-    this.authChange.next(false);
-    this.router.navigate(['/']);
-  }
-
-  getUser() {
-    return { ...this.user };
+    this.uAuth.signOut();
   }
 
   isAuth() {
-    return this.user != null;
+    return this.isAuthenticated;
   }
 
-  private authSuccessful() {
-    this.authChange.next(true);
-    this.router.navigate(['/run']);
-  }
 }
