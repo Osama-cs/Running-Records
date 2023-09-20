@@ -35,23 +35,27 @@ export class AuthService {
   }
 
   registerUser(authData: AuthData) {
+    this.UiService.loadingStateChanged.next(true);
     this.uAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
-        console.log(result);
+        this.UiService.loadingStateChanged.next(false);
       })
       .catch((error) => {
+        this.UiService.loadingStateChanged.next(false);
         this.UiService.showSnackbar(error.message, null, 3000);
       });
   }
 
   login(authData: AuthData) {
+    this.UiService.loadingStateChanged.next(true);
     this.uAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
-        console.log(result);
+        this.UiService.loadingStateChanged.next(false);
       })
       .catch((error) => {
+        this.UiService.loadingStateChanged.next(false);
         this.UiService.showSnackbar(error.message, null, 3000);
       });
   }
