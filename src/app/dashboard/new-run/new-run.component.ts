@@ -40,8 +40,12 @@ export class NewRunComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.runSubscription.unsubscribe();
-    this.loadingSubscription.unsubscribe();
+    if (this.runSubscription){
+      this.runSubscription.unsubscribe();
+    }
+    if (this.loadingSubscription){
+      this.loadingSubscription.unsubscribe();
+    }
   }
 
 }

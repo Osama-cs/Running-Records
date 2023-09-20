@@ -35,6 +35,8 @@ export class PastRunsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-   this.pastRunsChangedSubscription.unsubscribe();
+    if(this.pastRunsChangedSubscription){
+      this.pastRunsChangedSubscription.unsubscribe();
+    }
   }
 }
