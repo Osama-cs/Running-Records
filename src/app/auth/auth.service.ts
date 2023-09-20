@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { RunService } from '../dashboard/run.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UIService } from '../shared/ui.service';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,7 @@ export class AuthService {
     private router: Router,
     private uAuth: AngularFireAuth,
     private runService: RunService,
-    private snackBar: MatSnackBar
+    private UiService: UIService,
   ) {}
 
   initAuthListener() {
@@ -40,9 +41,7 @@ export class AuthService {
         console.log(result);
       })
       .catch((error) => {
-        this.snackBar.open(error.message, null, {
-          duration: 3000,
-        });
+        this.UiService.showSnackbar(error.message, null, 3000);
       });
   }
 
@@ -53,9 +52,7 @@ export class AuthService {
         console.log(result);
       })
       .catch((error) => {
-        this.snackBar.open(error.message, null, {
-          duration: 3000,
-        });
+        this.UiService.showSnackbar(error.message, null, 3000);
       });
   }
 

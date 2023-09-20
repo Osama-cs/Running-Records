@@ -10,7 +10,6 @@ import { RunService } from '../run.service';
   styleUrls: ['./current-run.component.css'],
 })
 export class CurrentRunComponent implements OnInit {
-
   seconds = 0;
 
   minutes = 0;
@@ -23,14 +22,13 @@ export class CurrentRunComponent implements OnInit {
     this.startOrResumeTimer();
   }
 
-  startOrResumeTimer(){
+  startOrResumeTimer() {
     this.timer = setInterval(() => {
       this.seconds = this.seconds + 1;
-      if (this.seconds == 60){
+      if (this.seconds == 60) {
         this.minutes++;
         this.seconds = 0;
       }
-      
     }, 1000);
   }
 
@@ -43,13 +41,12 @@ export class CurrentRunComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         this.runService.completedRun(this.seconds, this.minutes);
       } else {
         this.startOrResumeTimer();
       }
     });
-
   }
 }

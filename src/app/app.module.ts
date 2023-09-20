@@ -26,6 +26,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
+import { UIService } from './shared/ui.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { provideFunctions, getFunctions } from '@angular/fire/functions';
     provideFirestore(() => getFirestore()),
     provideFunctions(() => getFunctions()),
   ],
-  providers: [AuthService, RunService],
+  providers: [AuthService, RunService, UIService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

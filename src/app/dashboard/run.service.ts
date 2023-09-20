@@ -4,6 +4,7 @@ import { Run } from './run.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UIService } from '../shared/ui.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,15 +17,17 @@ export class RunService {
   private runningRun!: Run;
   private fireBaseSubscription: Subscription[] = [];
 
-  constructor(private dB: AngularFirestore, private snackBar: MatSnackBar) {}
+  constructor(private dB: AngularFirestore, private UiService: UIService) {}
 
   fetchAvailableRuns() {
+    this.UiService.loadingStateChanged.next(true);
     this.fireBaseSubscription.push(
       this.dB
         .collection('availableRuns')
         .snapshotChanges()
         .pipe(
           map((docArray) => {
+            // throw(new Error());
             return docArray.map((doc) => {
               const data: any = doc.payload.doc.data();
               return {
@@ -36,13 +39,14 @@ export class RunService {
         )
         .subscribe(
           (runs: Run[]) => {
+            this.UiService.loadingStateChanged.next(false);
             this.availableRuns = runs;
             this.runsChanged.next([...this.availableRuns]);
           },
           (error) => {
-            this.snackBar.open('Fetching Runs Failed, Please Try Again', null, {
-              duration: 3000,
-            });
+            this.UiService.loadingStateChanged.next(false);
+            this.UiService.showSnackbar('Fetching Runs Failed, Please Try Again', null, 3000);
+            this.runChanged.next(null);
           }
         )
     );
