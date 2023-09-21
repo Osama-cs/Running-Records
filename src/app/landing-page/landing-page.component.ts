@@ -13,8 +13,6 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
   }
   
-  onSubmit(form: NgForm){
-    console.log(form);
-  }
+  onSubmit(form: NgForm){  }
 
 }

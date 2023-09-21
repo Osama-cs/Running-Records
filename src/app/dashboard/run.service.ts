@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Run } from './run.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UIService } from '../shared/ui.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,15 +17,17 @@ export class RunService {
   private runningRun!: Run;
   private fireBaseSubscription: Subscription[] = [];
 
-  constructor(private dB: AngularFirestore) {}
+  constructor(private dB: AngularFirestore, private UiService: UIService) {}
 
   fetchAvailableRuns() {
+    this.UiService.loadingStateChanged.next(true);
     this.fireBaseSubscription.push(
       this.dB
         .collection('availableRuns')
         .snapshotChanges()
         .pipe(
           map((docArray) => {
+            // throw(new Error());
             return docArray.map((doc) => {
               const data: any = doc.payload.doc.data();
               return {
@@ -33,10 +37,18 @@ export class RunService {
             });
           })
         )
-        .subscribe((runs: Run[]) => {
-          this.availableRuns = runs;
-          this.runsChanged.next([...this.availableRuns]);
-        })
+        .subscribe(
+          (runs: Run[]) => {
+            this.UiService.loadingStateChanged.next(false);
+            this.availableRuns = runs;
+            this.runsChanged.next([...this.availableRuns]);
+          },
+          (error) => {
+            this.UiService.loadingStateChanged.next(false);
+            this.UiService.showSnackbar('Fetching Runs Failed, Please Try Again', null, 3000);
+            this.runChanged.next(null);
+          }
+        )
     );
   }
 
@@ -71,8 +83,8 @@ export class RunService {
     );
   }
 
-  cancelSubscription(){
-    this.fireBaseSubscription.forEach(sub => sub.unsubscribe());
+  cancelSubscription() {
+    this.fireBaseSubscription.forEach((sub) => sub.unsubscribe());
   }
 
   private addRunDataToFirestore(run: Run) {

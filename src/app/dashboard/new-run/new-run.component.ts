@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { RunService } from '../run.service';
 import { Run } from '../run.model';
 import { Subscription } from 'rxjs';
+import { UIService } from 'src/app/shared/ui.service';
 
 @Component({
   selector: 'app-new-run',
@@ -11,15 +12,26 @@ import { Subscription } from 'rxjs';
 })
 export class NewRunComponent implements OnInit, OnDestroy {
   runs: Run[];
-  runSubscription: Subscription;
+  isPageLoading = true;
+  private runSubscription: Subscription;
+  private loadingSubscription: Subscription;
 
-  constructor(private runService: RunService) {}
+  constructor(private runService: RunService, private UiService: UIService) {}
 
 
   ngOnInit() {
+    this.loadingSubscription = this.UiService.loadingStateChanged.subscribe(
+      isLoading => {
+        this.isPageLoading = isLoading;
+      }
+    );
     this.runSubscription = this.runService.runsChanged.subscribe(
       (runs) => (this.runs = runs)
     );
+    this.fetchRuns();
+  }
+
+  fetchRuns() {
     this.runService.fetchAvailableRuns();
   }
 
@@ -28,7 +40,12 @@ export class NewRunComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.runSubscription.unsubscribe();
+    if (this.runSubscription){
+      this.runSubscription.unsubscribe();
+    }
+    if (this.loadingSubscription){
+      this.loadingSubscription.unsubscribe();
+    }
   }
 
 }

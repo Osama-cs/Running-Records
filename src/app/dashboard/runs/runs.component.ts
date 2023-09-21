@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RunService } from '../run.service';
 
@@ -7,11 +7,12 @@ import { RunService } from '../run.service';
   templateUrl: './runs.component.html',
   styleUrls: ['./runs.component.css'],
 })
-export class RunComponent implements OnInit {
+export class RunComponent implements OnInit, OnDestroy {
   ongoingRun = false;
   runSubscription!: Subscription;
 
   constructor(private runService: RunService) {}
+  
 
   ngOnInit() {
     this.runSubscription = this.runService.runChanged.subscribe(
@@ -23,5 +24,11 @@ export class RunComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy(){
+   if (this.runSubscription){
+    this.runSubscription.unsubscribe();
+   }
   }
 }

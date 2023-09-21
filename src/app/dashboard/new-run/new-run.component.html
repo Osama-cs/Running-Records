@@ -5,7 +5,7 @@
         How Long would you like to run for?
       </mat-card-title>
       <mat-card-content fxLayoutAlign="center">
-        <mat-form-field>
+        <mat-form-field *ngIf="!isPageLoading && runs">
           <mat-label>Run Distance</mat-label>
           <mat-select ngModel name="runDistance" required>
             <mat-option *ngFor="let run of runs" [value]="run.id">
@@ -13,10 +13,14 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-spinner *ngIf="isPageLoading"></mat-spinner>
       </mat-card-content>
-      <mat-card-actions fxLayoutAlign="center">
-        <button mat-raised-button color="accent" [disabled]="form.invalid">
+      <mat-card-actions fxLayoutAlign="center" *ngIf="!isPageLoading">
+        <button *ngIf="runs" mat-raised-button color="accent" type="submit" [disabled]="form.invalid">
           Start
+        </button>
+        <button *ngIf="!runs" mat-raised-button color="accent" type="button" (click) = "fetchRuns()" >
+          Fetch Again?
         </button>
       </mat-card-actions>
     </mat-card>

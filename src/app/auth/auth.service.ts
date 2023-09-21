@@ -4,6 +4,8 @@ import { AuthData } from './auth-data.model';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { RunService } from '../dashboard/run.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UIService } from '../shared/ui.service';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +15,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private uAuth: AngularFireAuth,
-    private runService: RunService
+    private runService: RunService,
+    private UiService: UIService,
   ) {}
 
   initAuthListener() {
@@ -32,24 +35,28 @@ export class AuthService {
   }
 
   registerUser(authData: AuthData) {
+    this.UiService.loadingStateChanged.next(true);
     this.uAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
-        console.log(result);
+        this.UiService.loadingStateChanged.next(false);
       })
       .catch((error) => {
-        console.log(error);
+        this.UiService.loadingStateChanged.next(false);
+        this.UiService.showSnackbar(error.message, null, 3000);
       });
   }
 
   login(authData: AuthData) {
+    this.UiService.loadingStateChanged.next(true);
     this.uAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
-        console.log(result);
+        this.UiService.loadingStateChanged.next(false);
       })
       .catch((error) => {
-        console.log(error);
+        this.UiService.loadingStateChanged.next(false);
+        this.UiService.showSnackbar(error.message, null, 3000);
       });
   }
 
@@ -60,5 +67,4 @@ export class AuthService {
   isAuth() {
     return this.isAuthenticated;
   }
-
 }

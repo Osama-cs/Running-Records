@@ -18,48 +18,8 @@
   <section>
     <h1>Features</h1>
     <p>
-      In this application you will have the ability to keep track of the runs you have done
-      and give mood update once it's done.
+      In this application you will have the ability to keep track of the runs you have done,
+      by attaching a date and how many Kilometers you ran as well!
     </p>
-  </section>
-  <section>
-    <h1>Contact Us</h1>
-    <p>If you have an inquires, send them over and we'll get back to you ASAP!</p>
-    <form
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      fxLayoutGap="10px"
-      #f="ngForm"
-      (ngSubmit)="onSubmit(f)"
-    >
-      <mat-form-field appearance="outline">
-        <mat-label>Your Email</mat-label>
-        <input
-          type="email"
-          matInput
-          placeholder="ben@gmail.com"
-          ngModel
-          name="email"
-          email
-          required
-          #emailInput="ngModel"
-        />
-        <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
-        <mat-error *ngIf="!emailInput.hasError('required')" >E-mail is invalid.</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Your Message</mat-label>
-        <textarea
-          matInput
-          placeholder=""
-          ngModel
-          name="message"
-          required
-          #messInput="ngModel"
-        ></textarea>
-        <mat-error *ngIf="messInput.hasError('required')">Field Must not be empty.</mat-error>
-      </mat-form-field>
-      <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Submit</button>
-    </form>
   </section>
 </div>
